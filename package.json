@@ -1,0 +1,17 @@
+{
+  "name": "economy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "dependencies": {
+    "typescript": "^3.2.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server",
+    "redo_server_file": "tsc --allowJs --target esnext --removeComments --outFile server/index.js server/index.doc.js"
+  },
+  "keywords": [],
+  "author": "dhackl",
+  "license": "ISC"
+}

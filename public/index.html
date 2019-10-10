@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Minimal Repo</title>
+    <link href="css/index.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <h1>Economy</h1>
+    <div class="half">
+        <h2>Simulation</h2>
+        <canvas id="game-canvas" width="720" height="720"></canvas>
+    </div>
+    <div class="half">
+        <h2>Settings</h2>
+        <div id="sliders">
+            
+        </div>
+    </div>
+</body>
+
+<footer>
+    <!--
+      This will work -- as long as we are actually _serving_ the files from a
+      a web-server, _not_ the file system.
+    -->
+    <script type="module" src="src/index.js"></script>
+
+    <!--
+      This won't work (without type="module") -- the background will stay white,
+      and you will probably see an
+        `Uncaught SyntaxError: Unexpected token {` error
+      in the browser console.
+    -->
+    <!-- <script src="src/index.js" id="FAILING_EXAMPLE_SCRIPT"></script> -->
+</footer>
+
+</html>
