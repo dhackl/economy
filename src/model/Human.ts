@@ -1,5 +1,6 @@
 import { Game } from "../Game";
 import { Settings } from "../Settings";
+import { Need } from "./Need";
 
 export class Human {
 
@@ -25,13 +26,13 @@ export class Human {
         this.icon.src = './img/person.png';
 
         this.resources = {
-            'food': 2,
-            'wood': 0
+            food: 2,
+            wood: 0
         };
 
         this.needs = {
-            'hunger': 100,
-            'shelter': 0
+            energy: 100,
+            shelter: 50
         };
     }
 
@@ -41,22 +42,42 @@ export class Human {
         }
 
         // Chooose action based on current state of action, needs and resources
-        let hunger = this.needs['hunger'];
-        let food = this.resources['food'];
 
-        // First of all, try not to starve
-        if (hunger < 40 && food > 0) {
-            this.eat(Math.min(food, 60));
+        // Which of my needs has the highest urgency (consider priority + lack of it)
+        let maxUrgency = 0;
+        let mostUrgentNeed: Need = null;
+        for (var id in this.needs) {
+            let need = this.game.getNeed(id);
+            let satisfaction = this.needs[id];
+
+            let urgency = (1 - satisfaction / 100) * need.priority;
+
+            if (urgency >= maxUrgency) {
+                mostUrgentNeed = need;
+                maxUrgency = urgency;
+            }
+        }
+
+        // Find out if I have the resources to fulfill my most urgent need
+        let resAmount = this.resources[mostUrgentNeed.fulfillResource];
+        let resource = this.game.getResource(mostUrgentNeed.fulfillResource);
+        if (resAmount > 0) {
+            // Use resource to fulfill the need
+            this[mostUrgentNeed.fulfillAction]();
         }
         else {
-            if (Math.random() > 0.6)
-                this.hunt();
-            else
-                this.idle();
+            // First, gather resource, that's required to fulfill the need
+            this[resource.gatherAction]();
         }
 
+        // Degrade shelter over time
+        if (this.needs.shelter > 0) {
+            this.needs.shelter -= 1;
+        }
+
+
         // Check Health State
-        if (this.needs['hunger'] <= 0) {
+        if (this.needs.energy <= 0) {
             // I am dead
             this.isDead = true;
             this.currentAction = 'DEAD';
@@ -65,27 +86,24 @@ export class Human {
 
     private idle() {
         // Being idle, requires 1 food
-        this.needs['hunger'] -= 1;
+        this.needs.energy -= 1;
 
         this.currentAction = 'IDLE';
     }
 
-    private eat(amount: number) {
+    private eat() {
         // Eating, gain x food
-        if (amount <= this.resources['food']) {
-            this.resources['food'] -= amount;
-            this.needs['hunger'] = Math.min(this.needs['hunger'] + amount, 100);
-        }
-        else {
-            console.warn(this.name, 'cannot eat more food than I have');
-            this.needs['hunger'] -= 1;
+        let amount = Math.min(100 - this.needs.energy, this.resources.food);
+        if (amount <= this.resources.food) {
+            this.resources.food -= amount;
+            this.needs.energy = Math.min(this.needs.energy + amount, 100);
         }
 
         this.currentAction = 'EATING';
     }
 
     private hunt() {
-        // Hunting, might gain x food, requires 5 food
+        // Hunting, might gain x food, requires 5 energy
 
         // Determine change of successful hunt
         let success = Math.random() <= Settings.settings.huntingSuccess / 100;
@@ -93,12 +111,32 @@ export class Human {
         if (success) {
             // Determine, how much food I have caught
             let foodGain = 5 + Math.floor(Math.random() * Settings.settings.maxHuntingFoodGain);
-            this.resources['food'] += foodGain;
+            this.resources.food += foodGain;
         }
 
-        this.needs['hunger'] -= 5;
+        this.needs.energy -= 5;
 
         this.currentAction = 'HUNTING';
+    }
+
+    private gatherWood() {
+        // Gathering wood, gain 5 wood, requires 2 energy
+
+        let woodGain = 10;
+        this.resources.wood += woodGain;
+        this.needs.energy -= 2;
+
+        this.currentAction = 'GATHER WOOD';
+    }
+
+    private build() {
+        // Building, gain 5 shelter, requires 5 wood and 5 energy
+        
+        this.needs.shelter = Math.min(this.needs.shelter + 5, 100);
+        this.resources.wood -= 5;
+        this.needs.energy -= 5;
+
+        this.currentAction = 'BUILDING';
     }
 
     public draw(ctx: CanvasRenderingContext2D, x: number, y: number) {

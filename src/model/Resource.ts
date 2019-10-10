@@ -4,6 +4,8 @@ export class Resource {
     name: string;
     iconUrl: string;
  
+    gatherAction: string; // Action that's required to get the resource
+
     private icon: HTMLImageElement;
 
     constructor(init?: Partial<Resource>) {

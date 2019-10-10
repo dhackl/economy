@@ -7,7 +7,7 @@ export class Settings {
 
         // Hunting
         huntingSuccess: 40,
-        maxHuntingFoodGain: 20,
+        maxHuntingFoodGain: 25,
     };
 
     private static settingsMeta = [{
@@ -62,6 +62,5 @@ export class Settings {
     private static updateSlider(slider) {
         let idx = this.sliders.indexOf(slider);
         this.settings[this.settingsMeta[idx].id] = slider.value;
-        console.log(this.settings);
     }
 }

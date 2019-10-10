@@ -29,25 +29,31 @@ export class Game {
             'food': new Resource({
                 id: 'food',
                 name: 'Food',
-                iconUrl: 'meat.png'
+                iconUrl: 'meat.png',
+                gatherAction: 'hunt'
             }),
             'wood': new Resource({
                 id: 'wood',
                 name: 'Wood',
-                iconUrl: 'wood.png'
+                iconUrl: 'wood.png',
+                gatherAction: 'gatherWood'
             })
         };
 
         this.needs = {
-            'hunger': {
-                id: 'hunger',
-                name: 'Hunger',
-                priority: 1000
+            'energy': {
+                id: 'energy',
+                name: 'Energy',
+                priority: 4,
+                fulfillAction: 'eat',
+                fulfillResource: 'food'
             },
             'shelter': {
                 id: 'shelter',
                 name: 'Shelter',
-                priority: 1000
+                priority: 1,
+                fulfillAction: 'build',
+                fulfillResource: 'wood'
             }
         };
     }
