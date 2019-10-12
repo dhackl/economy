@@ -2,6 +2,7 @@ import { Human } from "./model/Human";
 import { Resource } from "./model/Resource";
 import { Need } from "./model/Need";
 import { Settings } from "./Settings";
+import { Skill } from "./model/Skill";
 
 export class Game {
 
@@ -12,13 +13,17 @@ export class Game {
     // Humans
     private humans: Array<Human>;
 
-    // Resources and Needs
+    // Resources, Skills and Needs
     private resources: Record<string, Resource>;
+    private skills: Record<string, Skill>;
     private needs: Record<string, Need>;
 
     // Drawing
     private canvas: HTMLCanvasElement;
     private context: CanvasRenderingContext2D;
+
+    // Controls
+    private isRunning: boolean = true;
 
     constructor() {
         this.initialize();
@@ -26,13 +31,13 @@ export class Game {
 
     private initialize() {
         this.resources = {
-            'food': new Resource({
+            food: new Resource({
                 id: 'food',
                 name: 'Food',
                 iconUrl: 'meat.png',
                 gatherAction: 'hunt'
             }),
-            'wood': new Resource({
+            wood: new Resource({
                 id: 'wood',
                 name: 'Wood',
                 iconUrl: 'wood.png',
@@ -41,20 +46,33 @@ export class Game {
         };
 
         this.needs = {
-            'energy': {
+            energy: {
                 id: 'energy',
                 name: 'Energy',
                 priority: 4,
                 fulfillAction: 'eat',
                 fulfillResource: 'food'
             },
-            'shelter': {
+            shelter: {
                 id: 'shelter',
                 name: 'Shelter',
                 priority: 1,
                 fulfillAction: 'build',
                 fulfillResource: 'wood'
             }
+        };
+
+        this.skills = {
+            hunting: new Skill({
+                id: 'hunting',
+                name: 'Hunting',
+                iconUrl: 'spear.png'
+            }),
+            building: new Skill({
+                id: 'building',
+                name: 'Building',
+                iconUrl: 'hammer.png'
+            })
         };
     }
 
@@ -63,6 +81,15 @@ export class Game {
 
         this.canvas = <HTMLCanvasElement>document.getElementById('game-canvas');
         this.context = <CanvasRenderingContext2D>this.canvas.getContext('2d');
+
+        // Control Buttons
+        document.getElementById('play-button').onclick = () => {
+            if (!this.isRunning) {
+                this.isRunning = true;
+                this.update();
+            }
+        };
+        document.getElementById('pause-button').onclick = () => this.isRunning = false;
 
         // Initialize Base Humans
         const humanCount = 5;
@@ -85,15 +112,17 @@ export class Game {
         }
 
         // Update humans
-        this.humans.forEach(human => {
+        for (var human of this.humans) {
             human.act();
-        })
+        }
 
         // Redraw Canvas
         this.draw(this.context);
 
         // Repeat at the given simulation rate
-        setTimeout(() => this.update(), 1000 - Settings.settings.simInterval);
+        if (this.isRunning) {
+            setTimeout(() => this.update(), 1000 - Settings.settings.simInterval);
+        }
     }
 
     draw(ctx: CanvasRenderingContext2D) {
@@ -116,6 +145,10 @@ export class Game {
 
     getResource(id: string) {
         return this.resources[id];
+    }
+
+    getSkill(id: string) {
+        return this.skills[id];
     }
 
     getNeed(id: string) {

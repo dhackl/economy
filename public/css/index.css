@@ -13,11 +13,17 @@ p {
     float: left;
 }
 
+.header {
+    width: 100%;
+    overflow: hidden;
+}
+
 #sliders {
     width: 50%;
 }
 .slider {
     -webkit-appearance: none;
+    float: left;
     width: 80%;
     height: 8px;
     border-radius: 5px;   
@@ -44,4 +50,10 @@ p {
     border-radius: 50%;
     background: #4CAF50;
     cursor: pointer;
+}
+
+.value-text {
+    float: left;
+    margin-left: 10px;
+    width: 40px;
 }

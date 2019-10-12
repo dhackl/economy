@@ -6,7 +6,7 @@ export class Settings {
         simInterval: 500,
 
         // Hunting
-        huntingSuccess: 40,
+        huntingSuccess: 35,
         maxHuntingFoodGain: 25,
         
         // Trading
@@ -17,7 +17,7 @@ export class Settings {
         id: 'simInterval',
         name: 'Simulation Speed',
         min: 1, 
-        max: 950
+        max: 999
     }, {
         id: 'huntingSuccess',
         name: 'Hunting Success %',
@@ -56,7 +56,7 @@ export class Settings {
                 slider.type = 'range';
                 slider.min = setting.min.toString();
                 slider.max = setting.max.toString();
-                slider.value = this.settings[setting.id].toString();
+                slider.value = this.settings[setting.id];
                 slider.className = 'slider';
                 slider.onchange = (ev => {
                     this.updateSlider(ev.srcElement);
@@ -66,8 +66,14 @@ export class Settings {
                 var label = document.createElement('h5');
                 label.innerText = setting.name;
 
+                var text = document.createElement('input');
+                text.disabled = true;
+                text.className = 'value-text';
+                text.value = this.settings[setting.id];
+
                 settingContainer.appendChild(label);
                 settingContainer.appendChild(slider);
+                settingContainer.appendChild(text);
             }
             else if (type === 'bool') {
                 var checkbox = document.createElement('input');
@@ -93,6 +99,9 @@ export class Settings {
     private static updateSlider(slider) {
         let idx = this.inputElements.indexOf(slider);
         this.settings[this.settingsMeta[idx].id] = slider.value;
+
+        // Set Value Text Element
+        slider.parentElement.getElementsByClassName('value-text')[0].value = slider.value;
     }
 
     private static updateCheckbox(checkbox) {

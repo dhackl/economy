@@ -21,6 +21,30 @@
      id="defs2">
     <linearGradient
        inkscape:collect="always"
+       id="linearGradient948">
+      <stop
+         style="stop-color:#9b4528;stop-opacity:1"
+         offset="0"
+         id="stop944" />
+      <stop
+         style="stop-color:#b14f2f;stop-opacity:1"
+         offset="1"
+         id="stop946" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient920">
+      <stop
+         style="stop-color:#b7b7b7;stop-opacity:1;"
+         offset="0"
+         id="stop916" />
+      <stop
+         style="stop-color:#b7b7b7;stop-opacity:0;"
+         offset="1"
+         id="stop918" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
        id="linearGradient1224">
       <stop
          style="stop-color:#000000;stop-opacity:1;"
@@ -158,6 +182,56 @@
        y1="705.04587"
        x2="809.24006"
        y2="705.04587" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient920"
+       id="linearGradient922"
+       x1="628.43585"
+       y1="914.6275"
+       x2="541.74091"
+       y2="946.53644"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.59144938,0,0,0.59144938,239.62263,378.31718)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient920"
+       id="linearGradient937"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.59144938,0,0,0.59144938,239.62263,378.31718)"
+       x1="628.43585"
+       y1="914.6275"
+       x2="541.74091"
+       y2="946.53644" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient948"
+       id="linearGradient950"
+       x1="938.03741"
+       y1="1097.0789"
+       x2="1077.1762"
+       y2="1068.875"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.57317075,0,0,0.57317075,398.77671,472.67935)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient948"
+       id="linearGradient961"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.57317075,0,0,0.57317075,436.38179,426.61313)"
+       x1="938.03741"
+       y1="1097.0789"
+       x2="1077.1762"
+       y2="1068.875" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient948"
+       id="linearGradient967"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.57317075,0,0,0.57317075,482.44802,471.73922)"
+       x1="938.03741"
+       y1="1097.0789"
+       x2="1077.1762"
+       y2="1068.875" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -166,9 +240,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.49497475"
-     inkscape:cx="344.84964"
-     inkscape:cy="760.56789"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="220.62906"
+     inkscape:cy="760.65144"
      inkscape:document-units="mm"
      inkscape:current-layer="g4898"
      showgrid="false"
@@ -186,7 +260,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -544,6 +618,138 @@
          style="opacity:1;fill:#6e5037;fill-opacity:1;stroke:none;stroke-width:3.97480202;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal"
          inkscape:export-xdpi="61.32"
          inkscape:export-ydpi="61.32" />
+      <g
+         id="g927"
+         inkscape:export-filename="C:\01 Development\Web\Economy\public\img\spear.png"
+         inkscape:export-xdpi="99.82"
+         inkscape:export-ydpi="99.82">
+        <path
+           sodipodi:nodetypes="ccccccc"
+           inkscape:connector-curvature="0"
+           id="rect891"
+           d="m 577.75258,920.50246 -0.19116,25.4281 -123.19084,131.81774 -6.6767,4.4908 -4.80335,-5.8689 5.08328,-5.8801 z"
+           style="opacity:1;fill:#6e5037;fill-opacity:1;stroke:none;stroke-width:3.97480202;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal" />
+        <path
+           sodipodi:nodetypes="ccccc"
+           inkscape:connector-curvature="0"
+           id="rect894"
+           d="m 551.13282,914.20297 70.77202,-24.37703 -29.09517,72.34473 -31.45423,-11.79533 z"
+           style="opacity:1;fill:#717171;fill-opacity:1;stroke:none;stroke-width:2.35089421;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal" />
+        <path
+           sodipodi:nodetypes="ccccc"
+           inkscape:connector-curvature="0"
+           id="path899"
+           d="m 565.30879,948.73096 c 21.23396,-14.73218 36.72087,-34.06202 52.91651,-52.82486 l -18.90459,43.32746 -7.71503,19.91986 z"
+           style="opacity:1;fill:url(#linearGradient922);fill-opacity:1;stroke:none;stroke-width:2.18306684;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal" />
+      </g>
+      <g
+         id="g914"
+         transform="matrix(0.65344543,0.53022561,-0.55716123,0.621855,889.06212,-132.37618)"
+         inkscape:export-filename="C:\01 Development\Web\Economy\public\img\hammer.png"
+         inkscape:export-xdpi="72.720001"
+         inkscape:export-ydpi="72.720001">
+        <rect
+           y="887.18591"
+           x="928.21069"
+           height="273.20099"
+           width="29.249886"
+           id="rect901"
+           style="opacity:1;fill:#9c683d;fill-opacity:1;stroke:none;stroke-width:3.24087834;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal" />
+        <rect
+           y="1142.7134"
+           x="917.57434"
+           height="23.931726"
+           width="47.863453"
+           id="rect903"
+           style="opacity:1;fill:#838383;fill-opacity:1;stroke:none;stroke-width:3.97480202;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal" />
+        <path
+           sodipodi:nodetypes="cccccccc"
+           inkscape:connector-curvature="0"
+           id="rect905"
+           d="m 848.43823,860.85083 152.23237,-0.66477 7.3125,36.76279 -156.22102,-2.19474 2.40816,-12.3747 31.49512,-3.57982 -37.09495,-4.77199 z"
+           style="opacity:1;fill:#838383;fill-opacity:1;stroke:none;stroke-width:11.68481922;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal" />
+        <rect
+           y="853.53833"
+           x="988.9801"
+           height="46.6203"
+           width="37.683357"
+           id="rect908"
+           style="opacity:1;fill:#6d6d6d;fill-opacity:1;stroke:none;stroke-width:3.42058229;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal" />
+      </g>
+      <g
+         id="g935"
+         transform="matrix(-1,0,0,1,1064.7954,0)"
+         inkscape:export-filename="C:\01 Development\Web\Economy\public\img\spear.png"
+         inkscape:export-xdpi="99.82"
+         inkscape:export-ydpi="99.82">
+        <path
+           style="opacity:1;fill:#6e5037;fill-opacity:1;stroke:none;stroke-width:3.97480202;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal"
+           d="m 577.75258,920.50246 -0.19116,25.4281 -123.19084,131.81774 -6.6767,4.4908 -4.80335,-5.8689 5.08328,-5.8801 z"
+           id="path929"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccccc" />
+        <path
+           style="opacity:1;fill:#717171;fill-opacity:1;stroke:none;stroke-width:2.35089421;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal"
+           d="m 551.13282,914.20297 70.77202,-24.37703 -29.09517,72.34473 -31.45423,-11.79533 z"
+           id="path931"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccc" />
+        <path
+           style="opacity:1;fill:url(#linearGradient937);fill-opacity:1;stroke:none;stroke-width:2.18306684;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal"
+           d="m 565.30879,948.73096 c 21.23396,-14.73218 36.72087,-34.06202 52.91651,-52.82486 l -18.90459,43.32746 -7.71503,19.91986 z"
+           id="path933"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccc" />
+      </g>
+      <g
+         id="g980"
+         transform="matrix(0.82398556,0,0,0.82398556,153.1647,188.34106)"
+         inkscape:export-filename="C:\01 Development\Web\Economy\public\img\hammer.png"
+         inkscape:export-xdpi="72.720001"
+         inkscape:export-ydpi="72.720001">
+        <rect
+           y="1063.2343"
+           x="934.27692"
+           height="44.18597"
+           width="81.905701"
+           id="rect942"
+           style="opacity:1;fill:url(#linearGradient950);fill-opacity:1;stroke:none;stroke-width:2.2782402;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal" />
+        <path
+           sodipodi:nodetypes="ccccc"
+           inkscape:connector-curvature="0"
+           id="rect952"
+           d="m 938.84923,1064.3773 h 75.42817 v 39.6137 l -6.8434,-32.0063 z"
+           style="opacity:1;fill:#ba6e55;fill-opacity:1;stroke:none;stroke-width:2.0700922;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal" />
+        <rect
+           style="opacity:1;fill:url(#linearGradient961);fill-opacity:1;stroke:none;stroke-width:2.2782402;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal"
+           id="rect957"
+           width="81.905701"
+           height="44.18597"
+           x="971.88202"
+           y="1017.168" />
+        <path
+           style="opacity:1;fill:#ba6e55;fill-opacity:1;stroke:none;stroke-width:2.0700922;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal"
+           d="m 976.45431,1018.3111 h 75.42819 v 39.6137 l -6.8434,-32.0063 z"
+           id="path959"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="ccccc" />
+        <g
+           id="g971">
+          <rect
+             style="opacity:1;fill:url(#linearGradient967);fill-opacity:1;stroke:none;stroke-width:2.2782402;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal"
+             id="rect963"
+             width="81.905701"
+             height="44.18597"
+             x="1017.9482"
+             y="1062.2941" />
+          <path
+             style="opacity:1;fill:#ba6e55;fill-opacity:1;stroke:none;stroke-width:2.0700922;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal"
+             d="m 1022.5205,1063.4372 h 75.4282 v 39.6137 l -6.8434,-32.0063 z"
+             id="path965"
+             inkscape:connector-curvature="0"
+             sodipodi:nodetypes="ccccc" />
+        </g>
+      </g>
     </g>
   </g>
 </svg>

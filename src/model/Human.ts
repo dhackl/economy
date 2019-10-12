@@ -8,6 +8,7 @@ export class Human {
     private icon: HTMLImageElement;
 
     private needs: Record<string, number>;
+    private skills: Record<string, number>;
     private resources: Record<string, number>;
     private prices: Record<string, number>;
 
@@ -36,6 +37,11 @@ export class Human {
             shelter: 50
         };
 
+        this.skills = {
+            hunting: 0,
+            building: 0
+        }
+
         this.prices = {
             food: 0,
             wood: 0
@@ -59,7 +65,7 @@ export class Human {
             let urgency = (1 - satisfaction / 100) * need.priority;
 
             // Determine my current market price/value for the respective resource (consider urgency and stock)
-            this.prices[need.fulfillResource] = (urgency + 0.01) * (1.0 / (this.resources[need.fulfillResource] + 1));
+            this.prices[need.fulfillResource] = (urgency + 0.01) * (10 / (this.resources[need.fulfillResource] + 1));
 
             if (urgency >= maxUrgency) {
                 mostUrgentNeed = need;
@@ -102,7 +108,12 @@ export class Human {
         // Find another human that's willing to trade with me 
         // (win-win pricing and both actually have the respective resource)
         for (var partner of this.game.getHumans()) {
+
+            if (partner === this) {
+                continue;
+            }
             
+            // Find a resource to trade win-win
             let exportRes = null; // Resource which I give away
             let importRes = null; // Resource which I want to get
             for (var priceId in this.prices) {
@@ -124,7 +135,7 @@ export class Human {
                 // Calculate price (amount that I give) based on demand
                 exportAmount = Math.round(exportAmount * this.prices[importRes] / partner.prices[exportRes]);
                 exportAmount = Math.min(exportAmount, this.resources[exportRes]);
-
+                
                 this.resources[exportRes] -= exportAmount;
                 partner.resources[exportRes] += exportAmount;
 
@@ -169,15 +180,16 @@ export class Human {
         // Hunting, might gain x food, requires 5 energy
 
         // Determine change of successful hunt
-        let success = Math.random() <= Settings.settings.huntingSuccess / 100;
+        let success = Math.random() <= (Settings.settings.huntingSuccess / 100 + (Math.min(this.skills.hunting, 30) / 100));
 
         if (success) {
             // Determine, how much food I have caught
-            let foodGain = 5 + Math.floor(Math.random() * Settings.settings.maxHuntingFoodGain);
+            let foodGain = 5 + Math.floor(Math.random() * (Settings.settings.maxHuntingFoodGain + Math.floor(this.skills.hunting * 2)));
             this.resources.food += foodGain;
         }
 
-        this.needs.energy -= 5;
+        this.skills.hunting += 0.1;
+        this.needs.energy -= 5 + Math.min(Math.floor(this.skills.hunting / 4), 10);
 
         this.currentAction = 'HUNTING';
     }
@@ -193,11 +205,15 @@ export class Human {
     }
 
     private build() {
-        // Building, gain 5 shelter, requires 5 wood and 5 energy
+        // Building, gain up to x shelter, requires up to 5 wood and energy
         
-        this.needs.shelter = Math.min(this.needs.shelter + 5, 100);
-        this.resources.wood -= 5;
-        this.needs.energy -= 5;
+        let amount = Math.min(5 + Math.floor(this.skills.building * 2), this.resources.wood);
+        this.needs.shelter = Math.min(this.needs.shelter + amount, 100);
+        this.resources.wood -= amount;
+
+        this.needs.energy -= 5 + Math.min(Math.floor(this.skills.building / 2), 10);
+
+        this.skills.building += 0.1;
 
         this.currentAction = 'BUILDING';
     }
@@ -236,8 +252,22 @@ export class Human {
             xpos += 40;
         }
 
+        // Resources
+        xpos = 320;
+        ctx.fillText('Skills', x + xpos, y + 10);
+        for (var skillId in this.skills) {
+            let skill = this.game.getSkill(skillId);
+            // Icon
+            ctx.drawImage(skill.getIcon(), x + xpos, y + 40, 24, 24);
+
+            // Value 
+            ctx.fillText('Lvl ' + Math.floor(this.skills[skillId]), x + xpos, y + 70);
+
+            xpos += 40;
+        }
+
         // Needs
-        xpos = 400;
+        xpos = 450;
         ctx.fillText('Needs', x + xpos, y + 10);
         for (var needId in this.needs) {
             let need = this.game.getNeed(needId);
