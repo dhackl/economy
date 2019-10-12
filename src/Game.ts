@@ -121,4 +121,8 @@ export class Game {
     getNeed(id: string) {
         return this.needs[id];
     }
+
+    getHumans() {
+        return this.humans;
+    }
 }

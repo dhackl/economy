@@ -9,6 +9,7 @@ export class Human {
 
     private needs: Record<string, number>;
     private resources: Record<string, number>;
+    private prices: Record<string, number>;
 
     // Actions
     private currentAction: string;
@@ -34,6 +35,11 @@ export class Human {
             energy: 100,
             shelter: 50
         };
+
+        this.prices = {
+            food: 0,
+            wood: 0
+        };
     }
 
     public act() {
@@ -51,6 +57,9 @@ export class Human {
             let satisfaction = this.needs[id];
 
             let urgency = (1 - satisfaction / 100) * need.priority;
+
+            // Determine my current market price/value for the respective resource (consider urgency and stock)
+            this.prices[need.fulfillResource] = (urgency + 0.01) * (1.0 / (this.resources[need.fulfillResource] + 1));
 
             if (urgency >= maxUrgency) {
                 mostUrgentNeed = need;
@@ -70,6 +79,11 @@ export class Human {
             this[resource.gatherAction]();
         }
 
+        // Trading
+        if (Settings.settings.enableTrade) {
+            this.trade();
+        }
+
         // Degrade shelter over time
         if (this.needs.shelter > 0) {
             this.needs.shelter -= 1;
@@ -81,6 +95,55 @@ export class Human {
             // I am dead
             this.isDead = true;
             this.currentAction = 'DEAD';
+        }
+    }
+
+    private trade() {
+        // Find another human that's willing to trade with me 
+        // (win-win pricing and both actually have the respective resource)
+        for (var partner of this.game.getHumans()) {
+            
+            let exportRes = null; // Resource which I give away
+            let importRes = null; // Resource which I want to get
+            for (var priceId in this.prices) {
+                if (this.prices[priceId] < partner.prices[priceId] && this.resources[priceId] > 0) {
+                    exportRes = priceId;
+                }
+                else if (this.prices[priceId] > partner.prices[priceId] && partner.resources[priceId] > 0) {
+                    importRes = priceId;
+                }
+            }
+
+            // Check, if export and import good are mutually agreed on
+            if (exportRes != null && importRes != null && exportRes != importRes) {
+                // Initiate Trade
+                
+                // Give away export resource
+                let exportAmount = this.resources[exportRes] / 2.0;
+                
+                // Calculate price (amount that I give) based on demand
+                exportAmount = Math.round(exportAmount * this.prices[importRes] / partner.prices[exportRes]);
+                exportAmount = Math.min(exportAmount, this.resources[exportRes]);
+
+                this.resources[exportRes] -= exportAmount;
+                partner.resources[exportRes] += exportAmount;
+
+                // Gain import resource from trade partner
+                let importAmount = partner.resources[importRes] / 2.0;
+
+                // Calculate price (amount that I gain) based on demand (reverse from above)
+                importAmount = Math.round(importAmount * partner.prices[exportRes] / this.prices[importRes]);
+                importAmount = Math.min(importAmount, partner.resources[importRes]);
+
+                this.resources[importRes] += importAmount;
+                partner.resources[importRes] -= importAmount;
+
+                // Trade Log
+                console.log('TRADE', `${this.name} with ${partner.name}: (- ${exportAmount} ${exportRes}), (+ ${importAmount} ${importRes})`);
+
+                // Allow only one trade per Human
+                return;
+            }
         }
     }
 

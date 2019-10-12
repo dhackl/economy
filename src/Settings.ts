@@ -8,6 +8,9 @@ export class Settings {
         // Hunting
         huntingSuccess: 40,
         maxHuntingFoodGain: 25,
+        
+        // Trading
+        enableTrade: true,
     };
 
     private static settingsMeta = [{
@@ -25,9 +28,13 @@ export class Settings {
         name: 'Max. Hunting Food Gain',
         min: 1, 
         max: 100
+    }, {
+        id: 'enableTrade',
+        name: 'Enable Trade',
+        type: 'bool'
     }];
 
-    private static sliders = [];
+    private static inputElements = [];
 
     public static init() {
         
@@ -39,28 +46,57 @@ export class Settings {
 
             var settingContainer = document.createElement('div');
 
-            var slider = document.createElement('input');
-            slider.type = 'range';
-            slider.min = setting.min.toString();
-            slider.max = setting.max.toString();
-            slider.value = this.settings[setting.id].toString();
-            slider.className = 'slider';
-            slider.onchange = (ev => {
-                this.updateSlider(ev.srcElement);
-            });
-            this.sliders.push(slider);
+            let type = 'number';
+            if (setting.type) {
+                type = setting.type;
+            }
 
-            var label = document.createElement('h5');
-            label.innerText = setting.name;
+            if (type === 'number') {
+                var slider = document.createElement('input');
+                slider.type = 'range';
+                slider.min = setting.min.toString();
+                slider.max = setting.max.toString();
+                slider.value = this.settings[setting.id].toString();
+                slider.className = 'slider';
+                slider.onchange = (ev => {
+                    this.updateSlider(ev.srcElement);
+                });
+                this.inputElements.push(slider);
 
-            settingContainer.appendChild(label);
-            settingContainer.appendChild(slider);
+                var label = document.createElement('h5');
+                label.innerText = setting.name;
+
+                settingContainer.appendChild(label);
+                settingContainer.appendChild(slider);
+            }
+            else if (type === 'bool') {
+                var checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = this.settings[setting.id] === true;
+                checkbox.onclick = (ev => {
+                    this.updateCheckbox(ev.srcElement);
+                });
+                this.inputElements.push(checkbox);
+
+                var label = document.createElement('h5');
+                label.innerText = setting.name;
+
+                settingContainer.appendChild(label);
+                settingContainer.appendChild(checkbox);
+            }
+
+
             container.appendChild(settingContainer);
         }
     }
 
     private static updateSlider(slider) {
-        let idx = this.sliders.indexOf(slider);
+        let idx = this.inputElements.indexOf(slider);
         this.settings[this.settingsMeta[idx].id] = slider.value;
+    }
+
+    private static updateCheckbox(checkbox) {
+        let idx = this.inputElements.indexOf(checkbox);
+        this.settings[this.settingsMeta[idx].id] = checkbox.checked;
     }
 }
