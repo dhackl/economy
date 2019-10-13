@@ -68,6 +68,11 @@ export class Game {
                 name: 'Hunting',
                 iconUrl: 'spear.png'
             }),
+            woodwork: new Skill({
+                id: 'woodwork',
+                name: 'Woodwork',
+                iconUrl: 'axe.png'
+            }),
             building: new Skill({
                 id: 'building',
                 name: 'Building',

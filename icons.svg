@@ -21,6 +21,18 @@
      id="defs2">
     <linearGradient
        inkscape:collect="always"
+       id="linearGradient927">
+      <stop
+         style="stop-color:#838383;stop-opacity:1"
+         offset="0"
+         id="stop923" />
+      <stop
+         style="stop-color:#c5c5c5;stop-opacity:1"
+         offset="1"
+         id="stop925" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
        id="linearGradient948">
       <stop
          style="stop-color:#9b4528;stop-opacity:1"
@@ -232,6 +244,16 @@
        y1="1097.0789"
        x2="1077.1762"
        y2="1068.875" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient927"
+       id="linearGradient929"
+       x1="1332.2244"
+       y1="987.60126"
+       x2="1403.6102"
+       y2="984.94214"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.84504734,-0.19908332,0.22128664,0.93929362,-23.256736,293.05745)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -240,9 +262,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.9899495"
-     inkscape:cx="220.62906"
-     inkscape:cy="760.65144"
+     inkscape:zoom="1.4"
+     inkscape:cx="508.14096"
+     inkscape:cy="668.40343"
      inkscape:document-units="mm"
      inkscape:current-layer="g4898"
      showgrid="false"
@@ -750,6 +772,33 @@
              sodipodi:nodetypes="ccccc" />
         </g>
       </g>
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="path921"
+         d="m 1306.026,938.26837 -34.4442,-11.61041 c 5.9911,-4.64004 5.1535,-23.42584 10.6312,-36.68797 l 34.4296,16.98538 c -1.2942,11.08842 -5.1143,21.79233 -10.6166,31.313 z"
+         style="opacity:1;fill:#838383;fill-opacity:1;stroke:none;stroke-width:1.84922338;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal"
+         inkscape:export-filename="C:\01 Development\Web\Economy\public\img\axe.png"
+         inkscape:export-xdpi="87.635918"
+         inkscape:export-ydpi="87.635918" />
+      <path
+         style="opacity:1;fill:#9c683d;fill-opacity:1;stroke:none;stroke-width:3.97480202;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal"
+         d="m 1314.8983,899.61203 24.3311,11.40836 c -37.5325,16.28726 -90.6199,212.75931 -113.5842,178.94571 -36.8355,0.7356 67.0435,-98.80694 89.2531,-190.35407 z"
+         id="rect915"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccc"
+         inkscape:export-filename="C:\01 Development\Web\Economy\public\img\axe.png"
+         inkscape:export-xdpi="87.635918"
+         inkscape:export-ydpi="87.635918" />
+      <path
+         style="opacity:1;fill:url(#linearGradient929);fill-opacity:1;stroke:none;stroke-width:3.63819695;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:10.94248867;stroke-opacity:1;paint-order:normal"
+         d="m 1327.9906,907.8298 84.7746,13.0336 c -11.03,9.29541 -25.9732,54.82753 -35.6389,81.9367 l -66.7707,-57.59957 z"
+         id="rect918"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccc"
+         inkscape:export-filename="C:\01 Development\Web\Economy\public\img\axe.png"
+         inkscape:export-xdpi="87.635918"
+         inkscape:export-ydpi="87.635918" />
     </g>
   </g>
 </svg>

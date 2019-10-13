@@ -39,6 +39,7 @@ export class Human {
 
         this.skills = {
             hunting: 0,
+            woodwork: 0,
             building: 0
         }
 
@@ -51,6 +52,11 @@ export class Human {
     public act() {
         if (this.isDead) {
             return;
+        }
+
+        // Trading
+        if (Settings.settings.enableTrade) {
+            this.trade();
         }
 
         // Chooose action based on current state of action, needs and resources
@@ -83,11 +89,6 @@ export class Human {
         else {
             // First, gather resource, that's required to fulfill the need
             this[resource.gatherAction]();
-        }
-
-        // Trading
-        if (Settings.settings.enableTrade) {
-            this.trade();
         }
 
         // Degrade shelter over time
@@ -188,7 +189,7 @@ export class Human {
             this.resources.food += foodGain;
         }
 
-        this.skills.hunting += 0.1;
+        this.skills.hunting += 0.1 / (Math.floor(this.skills.hunting) + 1);
         this.needs.energy -= 5 + Math.min(Math.floor(this.skills.hunting / 4), 10);
 
         this.currentAction = 'HUNTING';
@@ -197,9 +198,11 @@ export class Human {
     private gatherWood() {
         // Gathering wood, gain 5 wood, requires 2 energy
 
-        let woodGain = 10;
+        let woodGain = 7 + Math.floor(this.skills.woodwork * 4);
         this.resources.wood += woodGain;
         this.needs.energy -= 2;
+
+        this.skills.woodwork += 0.1 / (Math.floor(this.skills.woodwork) + 1);
 
         this.currentAction = 'GATHER WOOD';
     }
@@ -213,7 +216,7 @@ export class Human {
 
         this.needs.energy -= 5 + Math.min(Math.floor(this.skills.building / 2), 10);
 
-        this.skills.building += 0.1;
+        this.skills.building += 0.1 / (Math.floor(this.skills.building) + 1);
 
         this.currentAction = 'BUILDING';
     }
@@ -235,12 +238,12 @@ export class Human {
 
         // Action
         var xpos = 100;
-        ctx.fillText('Action', x + xpos, y + 10);
+        ctx.fillText('ACTION', x + xpos, y + 10);
         ctx.fillText(this.currentAction, x + xpos, y + 50);
 
         // Resources
         xpos = 200;
-        ctx.fillText('Resources', x + xpos, y + 10);
+        ctx.fillText('RESOURCES', x + xpos, y + 10);
         for (var resId in this.resources) {
             let res = this.game.getResource(resId);
             // Icon
@@ -248,13 +251,18 @@ export class Human {
 
             // Value 
             ctx.fillText(this.resources[resId].toString(), x + xpos, y + 70);
+        
+            // Debug Price
+            ctx.fillStyle = '#777';
+            ctx.fillText(this.prices[resId].toFixed(2), x + xpos, y + 80);
+            ctx.fillStyle = '#000';
 
             xpos += 40;
         }
 
         // Resources
         xpos = 320;
-        ctx.fillText('Skills', x + xpos, y + 10);
+        ctx.fillText('SKILLS', x + xpos, y + 10);
         for (var skillId in this.skills) {
             let skill = this.game.getSkill(skillId);
             // Icon
@@ -268,7 +276,7 @@ export class Human {
 
         // Needs
         xpos = 450;
-        ctx.fillText('Needs', x + xpos, y + 10);
+        ctx.fillText('NEEDS', x + xpos, y + 10);
         for (var needId in this.needs) {
             let need = this.game.getNeed(needId);
             let satisfaction = this.needs[needId];
@@ -291,7 +299,7 @@ export class Human {
             ctx.fillStyle = '#000';
             ctx.fillText(satisfaction.toString(), x + xpos, y + 70);
 
-            xpos += 40;
+            xpos += 50;
         }
     }
 
